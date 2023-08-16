@@ -1,0 +1,23 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render "form", restaurant: @restaurant %>
+<div class="container mt-5">
+  <p><strong>Reviews</strong></p>
+  <ul class="list-group">
+    <% @restaurant.reviews.each do |review| %>
+      <li class="list-group-item">
+        <%= review.content %>
+        <%= link_to "X",
+                    review_path(review),
+                    data: {
+                      turbo_method: :delete,
+                      turbo_confirm: 'Oui vraiment? 🥲'
+                    } %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<br>
+<div>
+  <%= button_to "Destroy this restaurant", @restaurant, method: :delete %>
+</div>
